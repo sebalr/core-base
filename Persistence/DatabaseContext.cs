@@ -1,3 +1,9 @@
+using System;
+using System.Linq;
+using System.Reflection;
+using Ardalis.EFCore.Extensions;
+using CoreBase.Entities;
+using CoreBase.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreBase.Persistance
@@ -10,7 +16,8 @@ namespace CoreBase.Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
+            modelBuilder.ConfigureFromAllAssembly();
+
         }
 
     }

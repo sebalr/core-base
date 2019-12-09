@@ -70,10 +70,10 @@ namespace CoreBase.Services
             return Ctx.Response.AsJson(dataDto);
         }
 
-        public Task RespondWithEntitiyDTO<TDTO>(HttpContext Ctx, TDTO DTO)
+        public async Task RespondWithEntitiyDTO<TDTO>(HttpContext Ctx, TDTO DTO)
         where TDTO : EntityDTO
         {
-            return Ctx.Response.AsJson(DTO);
+            await Ctx.Response.AsJson(DTO);
         }
 
         public TDTO ConvertToDTO<TEntity, TDTO>(TEntity Entity)

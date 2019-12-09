@@ -17,11 +17,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CoreBase
 {
-    public class Startup
+    public class BaseStartup
     {
         public IConfigurationRoot Configuration { get; set; }
 
-        public Startup(IHostEnvironment env)
+        public BaseStartup(IHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -31,7 +31,7 @@ namespace CoreBase
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             //Entity framework
             services.AddDbContext<DatabaseContext>(options =>
@@ -48,8 +48,6 @@ namespace CoreBase
             services.AddScoped<IBaseModuleService, BaseModuleService>();
 
             services.AddCarter();
-
-            services.AddAutoMapper(typeof(Startup));
 
             //JWT config
             var authSettings = authSettingSection.Get<AuthSettings>();

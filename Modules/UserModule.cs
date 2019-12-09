@@ -22,6 +22,7 @@ namespace CoreBase.Modules
                 {
                     ctx.Response.StatusCode = 400;
                     await ctx.Response.AsJson(new { message = "Username or password is incorrect" });
+                    return;
                 }
 
                 await baseModuleService.RespondWithEntitiyDTO(ctx, user);
